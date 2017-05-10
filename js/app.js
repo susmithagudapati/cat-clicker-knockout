@@ -1,7 +1,7 @@
-var AppViewModel = function () {
+var Cat = function() {
     this.clickCount = ko.observable(0);
     this.name = ko.observable('Tabby');
-    this.imgSrc = ko.observable('static/cat_picture1.jpeg');
+    this.imgSrc = ko.observable('static/cat_picture1.jpg');
     this.nicknames = ko.observableArray(['meow', 'tabtab', 'tiger']);
 
     this.title = ko.computed(function() {
@@ -22,9 +22,13 @@ var AppViewModel = function () {
         }
         return title;
     }, this);
+};
 
+
+var AppViewModel = function () {
+    this.currentCat = ko.observable( new Cat() );
     this.incrementCounter = function() {
-        this.clickCount(this.clickCount() + 1);
+        this.currentCat().clickCount(this.currentCat().clickCount() + 1);
     };
 };
 
